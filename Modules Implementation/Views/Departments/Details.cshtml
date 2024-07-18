@@ -1,0 +1,70 @@
+﻿@model Modules_Implementation.ViewModels.DepartmentViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Departments</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ParentDepartment)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ParentDepartment)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DepartmentName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DepartmentName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DepartmentLogo)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DepartmentLogo)
+        </dd>
+    </dl>
+     <h4>Sub-Departments</h4>
+            <div id="subDepartmentsContainer">
+                @if (Model.SubDepartments != null)
+                {
+                    for (int i = 0; i < Model.SubDepartments.Count; i++)
+                    {
+                        <dl class="row">
+                        <dt class = "col-sm-2">
+                           <label asp-for="SubDepartments[i].SubDepartmentID" class="control-label"></label>
+                             
+                        </dt>
+                        <dd class = "col-sm-10">
+                           <input asp-for="SubDepartments[i].SubDepartmentID" disabled class="form-control"/>
+                        </dd>
+
+                         <dt class = "col-sm-2">
+                           <label asp-for="SubDepartments[i].SubDepartmentName" class="control-label"></label>
+                             
+                        </dt>
+                        <dd class = "col-sm-10">
+                           <input asp-for="SubDepartments[i].SubDepartmentName" disabled class="form-control"/>
+                        </dd>
+
+                         <dt class = "col-sm-2">
+                           <label asp-for="SubDepartments[i].SubDepartmentLogo" class="control-label"></label>
+                             
+                        </dt>
+                        <dd class = "col-sm-10">
+                           <input asp-for="SubDepartments[i].SubDepartmentLogo" disabled class="form-control"/>
+                        </dd>
+                        </dl>
+                    }
+                }
+            </div>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.DepartmentID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
